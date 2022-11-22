@@ -31,12 +31,29 @@ addBookToLibrary(pride);
 addBookToLibrary(gatsby);
 
 function renderBooks() {
-  const container = document.querySelector(".book-container");
   myLibrary.forEach((book) => {
-    const newCard = document.createElement('div');
-    newCard.textContent = `${book.title} | ${book.author} | ${book.pages} | ${book.readStatus}`
-    container.append(newCard);
+    createBookCard(book);
   })
+}
+
+function markupFor(book) {
+  return (
+    `<div class='library__card'>
+      <div>${book.title}</div>
+      <div>${book.author}</div>
+      <div>${book.pages}</div>
+      <div>${book.readStatus}</div>
+    </div>`
+  )
+}
+
+function createBookCard(book) {
+  const range = document.createRange();
+  const tagString = markupFor(book)
+
+  range.selectNode(document.querySelector(".library"));
+  const bookFragment = range.createContextualFragment(tagString);
+  document.body.appendChild(bookFragment);
 }
 
 renderBooks();
