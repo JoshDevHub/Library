@@ -61,10 +61,11 @@ function createBookCard(book) {
   const template = document.getElementById("book-template");
 
   const clone = template.content.cloneNode(true);
-  const fields = clone.querySelectorAll('[data-prop]');
 
-  const properties = ["title", "author", "pages", "readStatus"];
-  fields.forEach((field, idx) => field.textContent = book[properties[idx]]);
+  for (const [prop, value] of Object.entries(book)) {
+    const field = clone.querySelector(`[data-prop='${prop}']`)
+    field.textContent = value;
+  }
 
   libraryContainer.appendChild(clone);
 }
