@@ -70,4 +70,14 @@ function createBookCard(book) {
   libraryContainer.appendChild(clone);
 }
 
+function toggleModal() {
+  const modalBox = document.querySelector('.modal-box');
+  const modalOverlay = document.querySelector('.modal-overlay');
+  modalBox.classList.toggle('closed');
+  modalOverlay.classList.toggle('closed');
+}
+
+const addBookButton = document.getElementById("add-book");
+addBookButton.addEventListener("click", toggleModal);
+
 renderBooks();
