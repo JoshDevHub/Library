@@ -1,0 +1,56 @@
+/* Universal Styles + Resets */
+
+:root {
+  --main-bg-color: hsl(210, 17%, 9%)
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--main-bg-color);
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.modal-overlay {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.modal-box {
+  border: 2px solid white;
+  border-radius: 10px;
+  margin-top: 2rem;
+  min-width: 60%;
+  padding: 3rem;
+  position: fixed;
+  z-index: 100;
+}
+
+.closed {
+  display: none;
+}
+
+.library {
+  display: flex;
+  gap: 1rem;
+}
+
+.library__card {
+  border: 2px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
