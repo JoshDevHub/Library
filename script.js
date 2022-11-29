@@ -2,11 +2,17 @@
 
 const myLibrary = [];
 
+const createUUID = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substring(2);
+}
+
 function Book(title, author, pages, readStatus) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.readStatus = readStatus;
+
+  this.id = createUUID();
 }
 
 Book.prototype.isInvalid = function() {
