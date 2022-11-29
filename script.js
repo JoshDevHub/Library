@@ -25,6 +25,11 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function removeBookFromLibrary(bookID) {
+  const bookIndex = myLibrary.findIndex((book) => book.id === bookID);
+  myLibrary.splice(bookIndex, 1);
+}
+
 // stock books
 const pride = new Book(
   "Pride and Prejudice",
@@ -76,6 +81,12 @@ function createBookCard(book) {
   const clone = template.content.cloneNode(true);
 
   for (const [prop, value] of Object.entries(book)) {
+    if (prop === "id") {
+      const deleteButton = clone.querySelector('button');
+      deleteButton.setAttribute("data-id", value)
+      continue;
+    };
+
     const field = clone.querySelector(`[data-prop='${prop}']`)
     field.textContent = value;
   }
@@ -89,6 +100,17 @@ function toggleModal() {
   modalBox.classList.toggle('closed');
   modalOverlay.classList.toggle('closed');
 }
+
+function removeBookHandler(event) {
+  const target = event.target;
+  if (target.dataset.btn !== "delete") return;
+
+  const id = target.dataset.id;
+  removeBookFromLibrary(id);
+  renderBooks();
+}
+
+libraryContainer.addEventListener("click", removeBookHandler);
 
 const addBookButton = document.getElementById("add-book");
 addBookButton.addEventListener("click", toggleModal);
