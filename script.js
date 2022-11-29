@@ -9,7 +9,13 @@ function Book(title, author, pages, readStatus) {
   this.readStatus = readStatus;
 }
 
+Book.prototype.isInvalid = function() {
+  return Object.values(this).some((v) => v.length === 0);
+}
+
 function addBookToLibrary(book) {
+  if (book.isInvalid()) return;
+
   myLibrary.push(book);
 }
 
@@ -48,6 +54,7 @@ submitButton.addEventListener("click", (event) => {
   const newBook = buildBookFromForm();
   addBookToLibrary(newBook);
   renderBooks();
+  toggleModal();
 })
 
 function renderBooks() {
