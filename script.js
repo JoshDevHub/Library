@@ -19,6 +19,14 @@ Book.prototype.isInvalid = function() {
   return Object.values(this).some((v) => v.length === 0);
 }
 
+Book.prototype.getTextProps = function() {
+  return ['title', 'author', 'pages'];
+}
+
+Book.prototype.toggleReadStatus = function() {
+  this.readStatus = !this.readStatus;
+}
+
 function addBookToLibrary(book) {
   if (book.isInvalid()) return;
 
@@ -28,6 +36,11 @@ function addBookToLibrary(book) {
 function removeBookFromLibrary(bookID) {
   const bookIndex = myLibrary.findIndex((book) => book.id === bookID);
   myLibrary.splice(bookIndex, 1);
+}
+
+function updateReadStatusFor(bookID) {
+  const book = myLibrary.find((book) => book.id === bookID);
+  book.toggleReadStatus();
 }
 
 // stock books
@@ -77,19 +90,18 @@ function renderBooks() {
 
 function createBookCard(book) {
   const template = document.getElementById("book-template");
-
   const clone = template.content.cloneNode(true);
 
-  for (const [prop, value] of Object.entries(book)) {
-    if (prop === "id") {
-      const deleteButton = clone.querySelector('button');
-      deleteButton.setAttribute("data-id", value)
-      continue;
-    };
+  book.getTextProps().forEach((prop) => {
+    const field = clone.querySelector(`[data-prop='${prop}']`);
+    field.textContent = book[prop];
+  })
 
-    const field = clone.querySelector(`[data-prop='${prop}']`)
-    field.textContent = value;
-  }
+  const parent = clone.querySelector('div');
+  parent.setAttribute("data-id", book.id);
+
+  const toggleInput = clone.querySelector('input');
+  toggleInput.checked = book.readStatus;
 
   libraryContainer.appendChild(clone);
 }
@@ -105,12 +117,21 @@ function removeBookHandler(event) {
   const target = event.target;
   if (target.dataset.btn !== "delete") return;
 
-  const id = target.dataset.id;
+  const id = target.parentElement.dataset.id;
   removeBookFromLibrary(id);
   renderBooks();
 }
 
+function updateReadHandler(event) {
+  const target = event.target;
+  if (target.name !== 'update-read-status') return;
+
+  const bookID = target.closest('.library__card').dataset.id;
+  updateReadStatusFor(bookID);
+}
+
 libraryContainer.addEventListener("click", removeBookHandler);
+libraryContainer.addEventListener("click", updateReadHandler);
 
 const addBookButton = document.getElementById("add-book");
 addBookButton.addEventListener("click", toggleModal);
