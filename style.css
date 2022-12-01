@@ -3,6 +3,7 @@
 :root {
   --main-bg-color: hsl(210, 17%, 9%);
   --secondary-bg-color: hsl(210, 20%, 33%);
+  --tertiary-bg-color: hsl(131, 100%, 35%);
 }
 
 *, *::before, *::after {
@@ -43,6 +44,26 @@ h1 {
 
 .closed {
   display: none;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5em;
+}
+
+.btn--primary {
+  background-color: var(--tertiary-bg-color);
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.btn--primary:hover {
+  filter: brightness(0.8);
 }
 
 .library {
