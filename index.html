@@ -24,7 +24,7 @@
           <input type="text" id="pages" name="pages">
         </div>
         <div class="toggle-container">
-          <input type="checkbox" id="readStatus" name="readStatus" class="toggle">
+          <input type="checkbox" id="readStatus" name="readStatus" class="toggle font-xl">
           <label for="readStatus">Read?</label>
         </div>
         <button id="submit" class="btn btn--primary">Add Book</button>
@@ -40,9 +40,9 @@
         <div data-prop="title"></div>
         <div data-prop="author"></div>
         <div data-prop="pages"></div>
-        <div>
-          <label for="update-read-status">Read?</label>
-          <input type="checkbox" name="update-read-status" value="update-read-status">
+        <div class="toggle-container">
+          <input type="checkbox" name="update-read-status" id="update-read-status" class="toggle font-xl">
+          <label for="update-read-status" data-btn="update">Read?</label>
         </div>
 
         <button data-btn="delete">Delete Book</button>

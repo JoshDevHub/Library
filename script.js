@@ -101,7 +101,11 @@ function createBookCard(book) {
   parent.setAttribute("data-id", book.id);
 
   const toggleInput = clone.querySelector('input');
+  const toggleLabel = clone.querySelector('label');
+
   toggleInput.checked = book.readStatus;
+  toggleInput.setAttribute("id", book.id);
+  toggleLabel.setAttribute("for", book.id);
 
   libraryContainer.appendChild(clone);
 }
@@ -124,9 +128,9 @@ function removeBookHandler(event) {
 
 function updateReadHandler(event) {
   const target = event.target;
-  if (target.name !== 'update-read-status') return;
+  if (target.dataset.btn !== 'update') return;
 
-  const bookID = target.closest('.library__card').dataset.id;
+  const bookID = target.getAttribute('for')
   updateReadStatusFor(bookID);
 }
 

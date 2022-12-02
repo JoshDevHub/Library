@@ -3,6 +3,7 @@
 :root {
   --main-bg-color: hsl(210, 17%, 9%);
   --secondary-bg-color: hsl(210, 20%, 33%);
+  --light-secondary-bg-color: hsl(210, 50%, 87%);
   --tertiary-bg-color: hsl(131, 100%, 35%);
   --light-tertiary-bg-color: hsl(131, 100%, 85%);
 }
@@ -20,6 +21,10 @@ html {
 
 h1 {
   text-align: center;
+}
+
+.font-xl {
+  font-size: 1.25rem;
 }
 
 .modal-overlay {
@@ -85,7 +90,7 @@ h1 {
 }
 
 input[type=text] {
-  background-color: hsl(210, 50%, 87%);
+  background-color: var(--light-secondary-bg-color);
   border: none;
   border-radius: 2px;
   padding: 0.5rem;
@@ -103,36 +108,35 @@ input[type=text]:focus {
   margin-bottom: 1rem;
 }
 
-input[type=checkbox].toggle {
+input[type="checkbox"].toggle {
   left: -9000px;
   opacity: 0;
   position: absolute;
   top: -9000px;
 }
 
-input[type=checkbox].toggle + label {
+input[type="checkbox"].toggle + label {
   align-items: center;
   cursor: pointer;
   display: flex;
-  font-size: 1.25rem;
   font-weight: bold;
   position: relative;
 }
 
-input[type=checkbox].toggle + label::after {
+input[type="checkbox"].toggle + label::after {
   content: "";
   width: 3em;
   height: 1.5em;
-  background-color: #ddd;
+  background-color: var(--light-secondary-bg-color);
   border-radius: 1.5em;
   margin-left: .25em;
 }
 
-input[type=checkbox].toggle:checked + label::after {
+input[type="checkbox"].toggle:checked + label::after {
   background-color: var(--light-tertiary-bg-color);
 }
 
-input[type=checkbox].toggle + label::before {
+input[type="checkbox"].toggle + label::before {
   content: "";
   width: 1.3em;
   height: 1.3em;
@@ -143,7 +147,7 @@ input[type=checkbox].toggle + label::before {
   transform: translateX(0%);
 }
 
-input[type=checkbox].toggle:checked + label::before {
+input[type="checkbox"].toggle:checked + label::before {
   right: 0.2em;
   background-color: var(--tertiary-bg-color);
 }
