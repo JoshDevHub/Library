@@ -2,10 +2,13 @@
 
 :root {
   --main-bg-color: hsl(210, 17%, 9%);
-  --secondary-bg-color: hsl(210, 20%, 33%);
-  --light-secondary-bg-color: hsl(210, 50%, 87%);
-  --tertiary-bg-color: hsl(131, 100%, 35%);
-  --light-tertiary-bg-color: hsl(131, 100%, 85%);
+  --extra-light-neutral: hsl(210, 50%, 87%);
+  --light-neutral: hsl(210, 30%, 78%);
+  --mid-neutral: hsl(210, 17%, 60%);
+  --dark-neutral: hsl(210, 20%, 33%);
+  --green-color: hsl(131, 100%, 35%);
+  --light-green-color: hsl(131, 100%, 85%);
+  --alert-color: hsl(5, 100%, 46%);
 }
 
 *, *::before, *::after {
@@ -38,7 +41,7 @@ h1 {
 }
 
 .modal-box {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--dark-neutral);
   border-radius: 5px;
   left: 50%;
   min-width: 50%;
@@ -64,13 +67,27 @@ h1 {
 }
 
 .btn--primary {
-  background-color: var(--tertiary-bg-color);
+  background-color: var(--green-color);
   color: white;
   margin-bottom: 1rem;
 }
 
 .btn--primary:hover {
   filter: brightness(0.8);
+}
+
+.btn--delete {
+  background-color: var(--mid-neutral);
+  color: var(--extra-light-neutral);
+  letter-spacing: 1px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.btn--delete:hover {
+  background-color: var(--alert-color);
+  color: white;
 }
 
 .grid {
@@ -90,7 +107,7 @@ h1 {
 }
 
 input[type=text] {
-  background-color: var(--light-secondary-bg-color);
+  background-color: var(--extra-light-neutral);
   border: none;
   border-radius: 2px;
   padding: 0.5rem;
@@ -127,13 +144,13 @@ input[type="checkbox"].toggle + label::after {
   content: "";
   width: 3em;
   height: 1.5em;
-  background-color: var(--light-secondary-bg-color);
+  background-color: var(--mid-neutral);
   border-radius: 1.5em;
   margin-left: .25em;
 }
 
 input[type="checkbox"].toggle:checked + label::after {
-  background-color: var(--light-tertiary-bg-color);
+  background-color: var(--light-green-color);
 }
 
 input[type="checkbox"].toggle + label::before {
@@ -141,7 +158,7 @@ input[type="checkbox"].toggle + label::before {
   width: 1.3em;
   height: 1.3em;
   right: 1.5em;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--dark-neutral);
   border-radius: 1em;
   position: absolute;
   transform: translateX(0%);
@@ -149,7 +166,7 @@ input[type="checkbox"].toggle + label::before {
 
 input[type="checkbox"].toggle:checked + label::before {
   right: 0.2em;
-  background-color: var(--tertiary-bg-color);
+  background-color: var(--green-color);
 }
 
 .library {
@@ -158,7 +175,7 @@ input[type="checkbox"].toggle:checked + label::before {
 }
 
 .library__card {
-  background-color: var(--secondary-bg-color);
+  background-color: var(--dark-neutral);
   border: 1px solid white;
   border-radius: 5px;
   display: flex;
