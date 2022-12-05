@@ -56,6 +56,10 @@ h1 {
   display: none;
 }
 
+.centered {
+  text-align: center;
+}
+
 .btn {
   border: none;
   border-radius: 5px;
@@ -63,13 +67,15 @@ h1 {
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
+  letter-spacing: 1px;
   padding: 0.5em;
 }
 
 .btn--primary {
   background-color: var(--green-color);
   color: white;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem auto;
+  /* margin-bottom: 1rem; */
 }
 
 .btn--primary:hover {
@@ -79,7 +85,6 @@ h1 {
 .btn--delete {
   background-color: var(--mid-neutral);
   color: var(--extra-light-neutral);
-  letter-spacing: 1px;
   font-size: 0.875rem;
   font-weight: bold;
   margin: 0 auto;
@@ -123,6 +128,7 @@ input[type=text]:focus {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 input[type="checkbox"].toggle {
@@ -171,6 +177,10 @@ input[type="checkbox"].toggle:checked + label::before {
 
 .library {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1600px;
   gap: 1rem;
 }
 
@@ -181,5 +191,14 @@ input[type="checkbox"].toggle:checked + label::before {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  width: 200px;
+  width: 300px;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.author {
+  margin-bottom: 0.25rem;
 }

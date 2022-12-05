@@ -30,16 +30,18 @@
         <button id="submit" class="btn btn--primary">Add Book</button>
       </form>
     </div>
-    <button type="button" class="btn btn--primary" id="add-book">+ ADD</button>
+    <div class="centered">
+      <button type="button" class="btn btn--primary" id="add-book">+ ADD</button>
+    </div>
     <div class="library">
 
     </div>
 
     <template id="book-template">
-      <div class="library__card">
-        <div data-prop="title"></div>
-        <div data-prop="author"></div>
-        <div data-prop="pages"></div>
+      <div class="library__card centered">
+        <div data-prop="title" class="title font-xl"></div>
+        <div data-prop="author" class="author"></div>
+        <div data-prop="pages" class="pages"></div>
         <div class="toggle-container">
           <input type="checkbox" name="update-read-status" id="update-read-status" class="toggle font-xl">
           <label for="update-read-status" data-btn="update">Read?</label>
