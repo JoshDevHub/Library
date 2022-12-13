@@ -6,25 +6,36 @@ const createUUID = () => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
 
-function Book(title, author, pages, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
+/* function Book(title, author, pages, readStatus) { */
+/*   this.title = title; */
+/*   this.author = author; */
+/*   this.pages = pages; */
+/*   this.readStatus = readStatus; */
+/**/
+/*   this.id = createUUID(); */
+/* } */
+/**/
+class Book {
+  constructor(title, author, pages, readStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
 
-  this.id = createUUID();
-}
+    this.id = createUUID();
+  }
 
-Book.prototype.isInvalid = function() {
-  return Object.values(this).some((v) => v.length === 0);
-}
+  isInvalid() {
+    return Object.values(this).some((v) => v.length === 0);
+  }
 
-Book.prototype.getTextProps = function() {
-  return ['title', 'author', 'pages'];
-}
+  getTextProps() {
+    return ['title', 'author', 'pages'];
+  }
 
-Book.prototype.toggleReadStatus = function() {
-  this.readStatus = !this.readStatus;
+  toggleReadStatus() {
+    this.readStatus = !this.readStatus;
+  }
 }
 
 function addBookToLibrary(book) {
