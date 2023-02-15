@@ -124,6 +124,12 @@ input[type=text]:focus {
   outline: none;
 }
 
+span.error {
+  color: var(--alert-color);
+  font-size: 0.9em;
+  grid-column: span 2;
+}
+
 .toggle-container {
   display: flex;
   justify-content: center;

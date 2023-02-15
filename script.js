@@ -6,15 +6,10 @@ const createUUID = () => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
 
-/* function Book(title, author, pages, readStatus) { */
-/*   this.title = title; */
-/*   this.author = author; */
-/*   this.pages = pages; */
-/*   this.readStatus = readStatus; */
-/**/
-/*   this.id = createUUID(); */
-/* } */
-/**/
+const capitalize = (string) => {
+  return string[0].toUpperCase() + string.slice(1);
+}
+
 class Book {
   constructor(title, author, pages, readStatus) {
     this.title = title;
@@ -86,6 +81,17 @@ function buildBookFromForm() {
 const submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", (event) => {
   event.preventDefault();
+  const inputs = document.querySelectorAll("form input");
+
+  let errorStatus = false;
+  for (const input of inputs) {
+    if (!input.validity.valid) {
+      showErrorFor(input);
+      errorStatus = true;
+    }
+  }
+  if (errorStatus) return;
+
   const newBook = buildBookFromForm();
   addBookToLibrary(newBook);
   renderBooks();
@@ -152,3 +158,42 @@ const addBookButton = document.getElementById("add-book");
 addBookButton.addEventListener("click", toggleModal);
 
 renderBooks();
+
+// Constraint Validations
+const titleField = document.getElementById("title");
+const authorField = document.getElementById("author");
+const pagesField = document.getElementById("pages");
+
+const patternValidations = {
+  author: "Must contain letters and spaces only",
+  pages: "Pages must be a number",
+}
+
+function showErrorFor(element) {
+  const errorContainer = element.nextElementSibling;
+  if (element.validity.valueMissing) {
+    errorContainer.textContent = `${capitalize(element.id)} must be present.`;
+  } else if (element.validity.patternMismatch) {
+    errorContainer.textContent = patternValidations[element.id];
+  }
+
+  errorContainer.className = "error active";
+}
+
+function handleValidations(event) {
+  const inputField = event.target;
+  if (inputField.validity.valid) {
+    const errorContainer = inputField.nextElementSibling;
+    errorContainer.textContent = "";
+    errorContainer.className = "error";
+  } else {
+    console.log("happening");
+    showErrorFor(inputField);
+  }
+}
+
+window.onload = () => {
+  titleField.addEventListener("change", handleValidations);
+  authorField.addEventListener("change", handleValidations);
+  pagesField.addEventListener("change", handleValidations);
+}
